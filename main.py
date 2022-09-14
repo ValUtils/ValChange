@@ -1,12 +1,12 @@
 from infi.systray import SysTrayIcon
-from os import _exit
+from os import _exit as quit
 
 from .config import get_config
 from .launch import valorant_start
 
 def create_tray(user):
 	def on_quit_callback(systray: SysTrayIcon):
-		_exit(0)
+		quit(0)
 	menu_options = ((f"Current user: {user}", None, lambda: ""),)
 	systray = SysTrayIcon("explorer", "ValChange", menu_options, on_quit=on_quit_callback)
 	systray.start()
