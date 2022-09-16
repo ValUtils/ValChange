@@ -1,7 +1,7 @@
 from infi.systray import SysTrayIcon
 from os import _exit as quit
 
-from .config import get_config
+from .config import get_config, get_password
 from .launch import launch_valorant, valorant_start
 
 def create_tray(user):
@@ -21,6 +21,7 @@ def main():
 
 	systray = create_tray(cUser.username)
 
+	get_password(cUser)
 	valorant_start(cUser)
 
 	systray.shutdown()

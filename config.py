@@ -1,5 +1,5 @@
 from sys import argv
-from ValConfig.auth import getPass
+from ValConfig.auth import getPass, init as init_auth
 from ValConfig.storage import jsonRead, jsonWrite, settingsPath
 from ValConfig.structs import User
 
@@ -21,7 +21,10 @@ def get_config():
 
 	username = alias[argv[1]]
 
-	passwd = getPass(username)
-	user = User(username, passwd)
+	user = User(username, "")
 	cUser = ChangeUser(user, defaultUser, cfg, pull)
 	return cUser
+
+def get_password(cUser: ChangeUser):
+	init_auth()
+	cUser.user.password = getPass(cUser.username)
