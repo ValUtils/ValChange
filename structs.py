@@ -1,4 +1,4 @@
-from dataclasses import InitVar, dataclass, field
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import List
 from ValConfig.structs import User
