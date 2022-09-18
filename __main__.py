@@ -5,7 +5,6 @@ if not __package__ and not hasattr(sys, 'frozen'):
 	path = os.path.realpath(os.path.abspath(__file__))
 	sys.path.insert(0, os.path.dirname(os.path.dirname("path")))
 
-import ValChange
-
 if __name__ == '__main__':
-	ValChange.main()
+	import ValChange.main
+	ValChange.main.main()
