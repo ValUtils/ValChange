@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import List
-from ValConfig.structs import User
+from ValVault import User
 
 @dataclass
 class ChangeUser():

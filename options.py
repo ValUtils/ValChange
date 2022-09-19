@@ -1,8 +1,7 @@
+from ValVault import getAuth, getPass, User
 from ValConfig.api import getPreference, setPreference
-from ValConfig.auth import getAuth, getPass
 from ValConfig.config import config, configList
 from ValConfig.loadout import loadout, loadList
-from ValConfig.structs import User
 
 from .structs import ChangeUser
 
