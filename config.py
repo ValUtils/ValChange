@@ -1,7 +1,6 @@
 from sys import argv
-from ValConfig.auth import getPass, init as init_auth
+from ValVault import getPass, init as init_auth, User
 from ValConfig.storage import jsonRead, jsonWrite, settingsPath
-from ValConfig.structs import User
 
 from .structs import ChangeUser
 
