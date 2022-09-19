@@ -1,7 +1,7 @@
 from ValVault import User
-from ValChange.proc import kill_all
 from ValConfig.storage import jsonRead, jsonWrite, settingsPath
 
+from .proc import kill_all
 from .cookies import get_cookies, save_cookies
 from .auths import clientAuth
 
