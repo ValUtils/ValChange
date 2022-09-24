@@ -9,6 +9,7 @@ images = [
 	"LeagueClient.exe",
 	"LoR.exe",
 	"VALORANT.exe",
+	"VALORANT-Win64-Shipping.exe",
 	"RiotClientServices.exe",
 	"RiotClientUx.exe",
 	"RiotClientUxRender.exe"
