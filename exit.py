@@ -13,7 +13,7 @@ from .switch import restore_cookies, images as riotImages
 
 lockFile: Path = settingsPath / "switcher" / "lock"
 
-def restore_settings():
+def restore_all():
 	data = readFromDrive(lockFile).split("||")
 	user = User(data[0], "")
 	cUser = ChangeUser(user, data[1], data[2], bool(int(data[3])))
@@ -21,6 +21,7 @@ def restore_settings():
 		return
 	get_password(cUser)
 	restore_options(cUser)
+	restore_cookies()
 
 
 def lock(cUser: ChangeUser):
@@ -35,8 +36,7 @@ def unlock():
 def fault():
 	if (not lockFile.exists()):
 		return
-	restore_cookies()
-	restore_settings()
+	restore_all()
 	unlock()
 
 def clean_exit():
