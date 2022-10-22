@@ -18,7 +18,10 @@ def get_config():
 	defaultUser = configFile["defaultUser"]
 	pull = configFile["pullConfig"]
 
-	username = alias[argv[1]]
+	if (len(argv) > 1):
+		username = alias[argv[1]]
+	else:
+		username = defaultUser
 
 	user = User(username, "")
 	cUser = ChangeUser(user, defaultUser, cfg, pull)
