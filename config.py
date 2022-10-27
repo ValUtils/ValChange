@@ -10,18 +10,23 @@ def switcher_write(data,file):
 def switcher_read(file):
 	return jsonRead(settingsPath / "switcher" / file)
 
-def get_config():
+def get_username(config):
 	alias = switcher_read("alias.json")
+	if (len(argv) < 1):
+		return config["defaultUser"]
+	name = argv[1]
+	if (name in alias):
+		return alias[name]
+	return name
+
+def get_config():
 	configFile = switcher_read("config.json")
 
 	cfg = configFile["defaultConfig"]
 	defaultUser = configFile["defaultUser"]
 	pull = configFile["pullConfig"]
 
-	if (len(argv) > 1):
-		username = alias[argv[1]]
-	else:
-		username = defaultUser
+	username = get_username(configFile)
 
 	user = User(username, "")
 	cUser = ChangeUser(user, defaultUser, cfg, pull)
