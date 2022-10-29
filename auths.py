@@ -3,7 +3,7 @@ from ValVault import User
 from ValVault.riot import setup_session, setup_auth
 
 
-def getCookies(session: requests.Session, user: User):
+def get_cookies(session: requests.Session, user: User):
 	data = {
 		'type': 'auth',
 		'remember': True,
@@ -19,7 +19,7 @@ def getCookies(session: requests.Session, user: User):
 	return cookies
 
 
-def clientAuth(user: User):
+def client_auth(user: User):
 	session = setup_session()
 	setup_auth(session)
-	return getCookies(session, user)
+	return get_cookies(session, user)

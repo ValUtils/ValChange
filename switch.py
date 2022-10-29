@@ -3,7 +3,7 @@ from ValConfig.storage import jsonRead, jsonWrite, settingsPath
 
 from .proc import kill_all
 from .cookies import get_cookies, save_cookies
-from .auths import clientAuth
+from .auths import client_auth
 
 images = [
 	"LeagueClient.exe",
@@ -24,7 +24,7 @@ def restore_cookies():
 def switch_user(user: User):
 	store_cookies()
 
-	cookies = clientAuth(user)
+	cookies = client_auth(user)
 	kill_all(images)
 	save_cookies(cookies)
 
