@@ -1,4 +1,4 @@
-from ValVault import getAuth, getPass, User
+from ValVault import get_auth, get_pass, User
 from ValConfig.api import getPreference, setPreference
 from ValConfig.config import config, configList
 from ValConfig.loadout import loadout, loadList
@@ -6,13 +6,13 @@ from ValConfig.loadout import loadout, loadList
 from .structs import ChangeUser
 
 def get_prefs(username):
-	user = User(username, getPass(username))
-	auth = getAuth(user)
+	user = User(username, get_pass(username))
+	auth = get_auth(user)
 	prefs = getPreference(auth)
 	return prefs
 
 def set_prefs(user, data):
-	auth = getAuth(user)
+	auth = get_auth(user)
 	setPreference(auth, data)
 
 def pull_prefs(cUser: ChangeUser):
