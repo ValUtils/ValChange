@@ -1,5 +1,5 @@
 from sys import argv
-from ValVault import getPass, init as init_auth, User
+from ValVault import get_pass, init as init_auth, User
 from ValConfig.storage import jsonRead, jsonWrite, settingsPath
 
 from .structs import ChangeUser
@@ -34,4 +34,4 @@ def get_config():
 
 def get_password(cUser: ChangeUser):
 	init_auth()
-	cUser.user.password = getPass(cUser.username)
+	cUser.user.password = get_pass(cUser.username)

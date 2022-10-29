@@ -1,6 +1,6 @@
 import requests
 from ValVault import User
-from ValVault.riot import setupSession, setupAuth
+from ValVault.riot import setup_session, setup_auth
 
 
 def getCookies(session: requests.Session, user: User):
@@ -20,6 +20,6 @@ def getCookies(session: requests.Session, user: User):
 
 
 def clientAuth(user: User):
-	session = setupSession()
-	setupAuth(session)
+	session = setup_session()
+	setup_auth(session)
 	return getCookies(session, user)
