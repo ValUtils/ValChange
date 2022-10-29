@@ -1,14 +1,14 @@
 from sys import argv
 from ValVault import get_pass, init as init_auth, User
-from ValConfig.storage import jsonRead, jsonWrite, settingsPath
+from ValConfig.storage import json_read, json_write, settingsPath
 
 from .structs import ChangeUser
 
 def switcher_write(data,file):
-	jsonWrite(data, settingsPath / "switcher" / file)
+	json_write(data, settingsPath / "switcher" / file)
 
 def switcher_read(file):
-	return jsonRead(settingsPath / "switcher" / file)
+	return json_read(settingsPath / "switcher" / file)
 
 def get_username(config):
 	alias = switcher_read("alias.json")
