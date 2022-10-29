@@ -1,19 +1,19 @@
 from ValVault import get_auth, get_pass, User
-from ValConfig.api import getPreference, setPreference
-from ValConfig.config import config, configList
-from ValConfig.loadout import loadout, loadList
+from ValConfig.api import get_preference, set_preference
+from ValConfig.config import config, config_list
+from ValConfig.loadout import loadout, load_list
 
 from .structs import ChangeUser
 
 def get_prefs(username):
 	user = User(username, get_pass(username))
 	auth = get_auth(user)
-	prefs = getPreference(auth)
+	prefs = get_preference(auth)
 	return prefs
 
 def set_prefs(user, data):
 	auth = get_auth(user)
-	setPreference(auth, data)
+	set_preference(auth, data)
 
 def pull_prefs(cUser: ChangeUser):
 	prefs = get_prefs(cUser.defaultUser)
@@ -23,14 +23,14 @@ def pull_prefs(cUser: ChangeUser):
 def set_options(cUser: ChangeUser):
 	if (cUser.pull):
 		pull_prefs(cUser)
-	elif (cUser.cfg in configList()):
+	elif (cUser.cfg in config_list()):
 		config("import", cUser.user, cUser.cfg)
-	if (cUser.cfg in loadList(cUser.username)):
+	if (cUser.cfg in load_list(cUser.username)):
 		loadout("import", cUser.user, cUser.cfg)
 
 def restore_options(cUser: ChangeUser):
-	if (cUser.cfg in configList() or cUser.pull):
+	if (cUser.cfg in config_list() or cUser.pull):
 		config("restore", cUser.user, "")
-	if (cUser.cfg in loadList(cUser.username)):
+	if (cUser.cfg in load_list(cUser.username)):
 		loadout("dump", cUser.user, cUser.cfg)
 		loadout("restore", cUser.user, "")

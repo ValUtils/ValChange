@@ -1,7 +1,7 @@
 from os import remove
 from pathlib import Path
 from ValVault.structs import User
-from ValConfig.storage import readFromDrive, settingsPath, saveToDrive
+from ValConfig.storage import read_from_drive, settingsPath, save_to_drive
 
 from .proc import kill_all
 from .structs import ChangeUser
@@ -14,7 +14,7 @@ from .switch import restore_cookies, images as riotImages
 lockFile: Path = settingsPath / "switcher" / "lock"
 
 def restore_all():
-	data = readFromDrive(lockFile).split("||")
+	data = read_from_drive(lockFile).split("||")
 	user = User(data[0], "")
 	cUser = ChangeUser(user, data[1], data[2], bool(int(data[3])))
 	if (cUser.isDefault):
@@ -26,7 +26,7 @@ def restore_all():
 
 def lock(cUser: ChangeUser):
 	data = f"{cUser.username}||{cUser.defaultUser}||{cUser.cfg}||{int(cUser.pull)}"
-	saveToDrive(data, lockFile)
+	save_to_drive(data, lockFile)
 
 def unlock():
 	if (not lockFile.exists()):
