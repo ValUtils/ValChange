@@ -1,7 +1,7 @@
 from os import remove
 from pathlib import Path
-from ValVault.structs import User
-from ValConfig.storage import read_from_drive, settingsPath, save_to_drive
+from ValLib import User
+from ValLib.storage import read_from_drive, save_to_drive, utilsPath
 
 from .proc import kill_all
 from .structs import ChangeUser
@@ -11,7 +11,7 @@ from .options import restore_options
 from .launch import get_programs
 from .switch import restore_cookies, images as riotImages
 
-lockFile: Path = settingsPath / "switcher" / "lock"
+lockFile: Path = utilsPath / "change" / "lock"
 
 def restore_all():
 	data = read_from_drive(lockFile).split("||")

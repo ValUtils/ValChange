@@ -1,5 +1,5 @@
-from ValVault import User
-from ValConfig.storage import json_read, json_write, settingsPath
+from ValLib import User
+from ValLib.storage import json_read, json_write, utilsPath
 
 from .proc import kill_all
 from .cookies import get_cookies, save_cookies
@@ -16,10 +16,10 @@ images = [
 ]
 
 def store_cookies():
-	json_write(get_cookies(), settingsPath / "switcher" / "cookies.json")
+	json_write(get_cookies(), utilsPath / "change" / "cookies.json")
 
 def restore_cookies():
-	save_cookies(json_read(settingsPath / "switcher" / "cookies.json"))
+	save_cookies(json_read(utilsPath / "change" / "cookies.json"))
 
 def switch_user(user: User):
 	store_cookies()
