@@ -2,7 +2,6 @@ import requests
 from ValVault import User
 from ValVault.riot import setup_session, setup_auth
 
-
 def get_cookies(session: requests.Session, user: User):
 	data = {
 		'type': 'auth',
@@ -17,7 +16,6 @@ def get_cookies(session: requests.Session, user: User):
 	
 	cookies = r.cookies.get_dict()
 	return cookies
-
 
 def client_auth(user: User):
 	session = setup_session()
