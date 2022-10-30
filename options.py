@@ -1,5 +1,5 @@
 from ValVault import get_auth, get_pass, User
-from ValConfig.api import get_preference, set_preference
+from ValLib.api import get_preference, set_preference
 from ValConfig.config import config, config_list
 from ValConfig.loadout import loadout, load_list
 
