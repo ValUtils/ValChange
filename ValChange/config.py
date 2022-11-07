@@ -12,7 +12,7 @@ def switcher_read(file):
 
 def get_username(config):
 	alias = switcher_read("alias.json")
-	if (len(argv) < 1):
+	if (len(argv) <= 1):
 		return config["defaultUser"]
 	name = argv[1]
 	if (name in alias):
