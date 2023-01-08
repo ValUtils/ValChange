@@ -14,6 +14,13 @@ def create_tray(user):
 	systray.start()
 	return systray
 
+def launch(cUser):
+	if (cUser.isDefault):
+		launch_valorant()
+		return
+	get_password(cUser)
+	valorant_start(cUser)
+
 def main():
 	fault()
 
@@ -21,14 +28,9 @@ def main():
 
 	lock(cUser)
 
-	if (cUser.isDefault):
-		launch_valorant()
-		return
-
 	systray = create_tray(cUser.username)
 
-	get_password(cUser)
-	valorant_start(cUser)
+	launch(cUser)
 
 	systray.shutdown()
 	unlock()
