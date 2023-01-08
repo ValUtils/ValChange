@@ -1,5 +1,5 @@
 from sys import argv
-from ValVault import get_pass, init_vault, User
+from ValVault import get_pass, get_name, init_vault, User
 from ValLib.storage import json_read, json_write, utilsPath
 
 from .structs import ChangeUser
@@ -11,13 +11,11 @@ def switcher_read(file):
 	return json_read(utilsPath / "change" / file)
 
 def get_username(config):
-	alias = switcher_read("alias.json")
 	if (len(argv) <= 1):
 		return config["defaultUser"]
-	name = argv[1]
-	if (name in alias):
-		return alias[name]
-	return name
+	init_vault()
+	alias = argv[1]
+	return get_name(alias)
 
 def get_config():
 	configFile = switcher_read("config.json")
