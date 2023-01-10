@@ -39,8 +39,9 @@ def fault():
 	restore_all()
 	unlock()
 
-def clean_exit():
-	restore_cookies()
+def clean_exit(cUser: ChangeUser):
+	if (not cUser.isDefault):
+		restore_cookies()
 	kill_all(riotImages)
 	kill_all([p.path.name for p in get_programs().list])
 	unlock()
