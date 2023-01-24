@@ -22,11 +22,7 @@ def launch(cUser: ChangeUser):
 	get_password(cUser)
 	valorant_start(cUser)
 
-def main():
-	fault()
-
-	cUser = get_config()
-
+def change(cUser: ChangeUser):
 	lock(cUser)
 
 	systray = create_tray(cUser)
@@ -35,3 +31,8 @@ def main():
 
 	systray.shutdown()
 	unlock()
+
+def main():
+	fault()
+	cUser = get_config()
+	change(cUser)
