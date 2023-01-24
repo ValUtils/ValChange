@@ -22,7 +22,7 @@ def valorant_start(cUser: ChangeUser):
 
 def get_programs():
 	programsData = switcher_read("programs.json")
-	programs = Programs([], [], [], "")
+	programs = Programs()
 	for p in programsData:
 		program = Program(Path(p["path"]), p["type"], p["beforeLaunch"], p["close"])
 		programs.list.append(program)

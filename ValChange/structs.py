@@ -27,7 +27,7 @@ class Program():
 
 @dataclass
 class Programs():
-	list: List[Program]
-	beforeLaunch: List[Program]
-	afterLaunch: List[Program]
-	launcher: Program
+	beforeLaunch: List[Program] = field(default_factory=list)
+	afterLaunch: List[Program] = field(default_factory=list)
+	list: List[Program] = field(default_factory=list)
+	launcher: Program = field(default="")
