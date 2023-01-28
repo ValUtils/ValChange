@@ -33,4 +33,4 @@ class Programs():
     beforeLaunch: List[Program] = field(default_factory=list)
     afterLaunch: List[Program] = field(default_factory=list)
     list: List[Program] = field(default_factory=list)
-    launcher: Program = field(default="")
+    launcher: Program = field(init=False)
