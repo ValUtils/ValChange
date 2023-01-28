@@ -25,8 +25,7 @@ def get_config(name=""):
     settings = get_settings(Settings, utilsPath / "change" / "config.json")
     username = get_username(settings)
     user = User(name or username, "")
-    cUser = ChangeUser(user, settings.defaultUser,
-                       settings.defaultConfig, settings.pull)
+    cUser = ChangeUser(user, settings)
     return cUser
 
 

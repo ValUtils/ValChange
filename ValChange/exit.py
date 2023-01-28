@@ -1,10 +1,9 @@
 from os import remove
 from pathlib import Path
-from ValLib import User
-from ValStorage import read_from_drive, save_to_drive, utilsPath
+from ValStorage import json_read, json_write, utilsPath
 
 from .proc import kill_all
-from .structs import ChangeUser
+from .structs import ChangeUser, Settings
 from .config import get_password
 from .switch import restore_cookies
 from .options import restore_options
@@ -15,9 +14,8 @@ lockFile: Path = utilsPath / "change" / "lock"
 
 
 def restore_all():
-    data = read_from_drive(lockFile).split("||")
-    user = User(data[0], "")
-    cUser = ChangeUser(user, data[1], data[2], bool(int(data[3])))
+    data = json_read(lockFile)
+    cUser = ChangeUser.from_dict(data)
     if (cUser.isDefault):
         return
     get_password(cUser)
@@ -26,8 +24,9 @@ def restore_all():
 
 
 def lock(cUser: ChangeUser):
-    data = f"{cUser.username}||{cUser.defaultUser}||{cUser.cfg}||{int(cUser.pull)}"
-    save_to_drive(data, lockFile)
+    cUser.user.password = ""
+    data = cUser.to_dict()
+    json_write(data, lockFile)
 
 
 def unlock():

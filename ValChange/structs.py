@@ -13,11 +13,12 @@ class Settings(DataClassJsonMixin):
 
 
 @dataclass
-class ChangeUser():
+class ChangeUser(DataClassJsonMixin):
     user: User
-    defaultUser: str
-    cfg: str
-    pull: bool
+    settings: Settings
+    defaultUser: str = field(init=False)
+    cfg: str = field(init=False)
+    pull: bool = field(init=False)
     username: str = field(init=False)
     isDefault: bool = field(init=False)
 
@@ -25,6 +26,9 @@ class ChangeUser():
         if not self.user:
             return
         self.username = self.user.username
+        self.defaultUser = self.settings.defaultUser
+        self.cfg = self.settings.defaultConfig
+        self.pull = self.settings.pull
         self.isDefault = self.username == self.defaultUser
 
 
