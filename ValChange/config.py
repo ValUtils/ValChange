@@ -21,7 +21,7 @@ def get_username(config):
     return get_name(alias)
 
 
-def get_config():
+def get_config(name=""):
     configFile = switcher_read("config.json")
 
     cfg = configFile["defaultConfig"]
@@ -30,7 +30,7 @@ def get_config():
 
     username = get_username(configFile)
 
-    user = User(username, "")
+    user = User(name or username, "")
     cUser = ChangeUser(user, defaultUser, cfg, pull)
     return cUser
 
