@@ -6,6 +6,7 @@ authors = [{ name = "PWall" }]
 license = {text = "GPL-3.0"}
 dependencies = [
 	"ValConfig",
+	"ValStorage",
 	"pyyaml",
 	"psutil",
 	"requests",
