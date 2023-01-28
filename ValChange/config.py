@@ -1,6 +1,6 @@
 from sys import argv
 from ValVault import get_pass, get_name, init_vault, User
-from ValLib.storage import json_read, json_write, utilsPath
+from ValStorage import json_read, json_write, utilsPath
 
 from .structs import ChangeUser
 

@@ -1,7 +1,7 @@
 from os import remove
 from pathlib import Path
 from ValLib import User
-from ValLib.storage import read_from_drive, save_to_drive, utilsPath
+from ValStorage import read_from_drive, save_to_drive, utilsPath
 
 from .proc import kill_all
 from .structs import ChangeUser

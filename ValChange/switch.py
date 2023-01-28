@@ -1,5 +1,5 @@
 from ValLib import User
-from ValLib.storage import json_read, json_write, utilsPath
+from ValStorage import json_read, json_write, utilsPath
 
 from .proc import kill_all
 from .cookies import get_cookies, save_cookies
