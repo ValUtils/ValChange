@@ -1,8 +1,8 @@
 from sys import argv
 from ValVault import get_pass, get_name, init_vault, User
-from ValStorage import json_read, json_write, utilsPath
+from ValStorage import get_settings, json_read, json_write, utilsPath
 
-from .structs import ChangeUser
+from .structs import ChangeUser, Settings
 
 
 def switcher_write(data, file):
@@ -13,25 +13,20 @@ def switcher_read(file):
     return json_read(utilsPath / "change" / file)
 
 
-def get_username(config):
+def get_username(settings: Settings):
     if (len(argv) <= 1):
-        return config["defaultUser"]
+        return settings.defaultUser
     init_vault()
     alias = argv[1]
     return get_name(alias)
 
 
 def get_config(name=""):
-    configFile = switcher_read("config.json")
-
-    cfg = configFile["defaultConfig"]
-    defaultUser = configFile["defaultUser"]
-    pull = configFile["pullConfig"]
-
-    username = get_username(configFile)
-
+    settings = get_settings(Settings, utilsPath / "change" / "config.json")
+    username = get_username(settings)
     user = User(name or username, "")
-    cUser = ChangeUser(user, defaultUser, cfg, pull)
+    cUser = ChangeUser(user, settings.defaultUser,
+                       settings.defaultConfig, settings.pull)
     return cUser
 
 

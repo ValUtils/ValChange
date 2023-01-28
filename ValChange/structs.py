@@ -1,7 +1,15 @@
 from dataclasses import dataclass, field
+from dataclasses_json import DataClassJsonMixin
 from pathlib import Path
 from typing import List
 from ValLib import User
+
+
+@dataclass
+class Settings(DataClassJsonMixin):
+    defaultConfig: str = ""
+    defaultUser: str = ""
+    pull: bool = False
 
 
 @dataclass
