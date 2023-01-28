@@ -30,9 +30,7 @@ def lock(cUser: ChangeUser):
 
 
 def unlock():
-    if (not lockFile.exists()):
-        return
-    remove(lockFile)
+    lockFile.unlink(missing_ok=True)
 
 
 def fault():
