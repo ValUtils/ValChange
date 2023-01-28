@@ -1,5 +1,6 @@
 from infi.systray import SysTrayIcon
 from os import _exit as quit
+from ValImgs import get_imgs
 
 from .exit import fault, lock, unlock, clean_exit
 from .config import get_config, get_password
@@ -12,7 +13,7 @@ def create_tray(cUser: ChangeUser):
         clean_exit(cUser)
         quit(0)
     menu_options = ((f"Current user: {cUser.username}", None, lambda: ""),)
-    systray = SysTrayIcon("explorer", "ValChange",
+    systray = SysTrayIcon(get_imgs("icon.ico"), "ValChange",
                           menu_options, on_quit=on_quit_callback)
     systray.start()
     return systray
