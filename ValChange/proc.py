@@ -1,6 +1,6 @@
 import os
-from time import sleep
 import psutil
+from time import sleep
 
 
 def find_procs_by_name(name):
