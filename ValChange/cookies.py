@@ -2,7 +2,7 @@ import yaml
 from os import getenv
 from pathlib import Path
 
-LocalAppData = getenv("LocalAppData")
+LocalAppData = getenv("LocalAppData", "")
 PrivateYaml = Path(LocalAppData) / "Riot Games" / \
     "Riot Client" / "Data" / "RiotGamesPrivateSettings.yaml"
 
