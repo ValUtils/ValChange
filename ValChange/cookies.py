@@ -8,10 +8,8 @@ PrivateYaml = Path(LocalAppData) / "Riot Games" / \
 
 
 def read_yaml(file):
-    f = open(file, "r")
-    data = yaml.load(f, yaml.Loader)
-    f.close()
-    return data
+    with open(file, "r") as f:
+        return yaml.load(f, yaml.Loader)
 
 
 def write_yaml(file, data):
