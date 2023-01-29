@@ -6,8 +6,11 @@ import psutil
 def find_procs_by_name(name):
     ls = []
     for p in psutil.process_iter(["exe"]):
-        if p.exe() and os.path.basename(p.exe()) == name:
-            ls.append(p)
+        try:
+            if os.path.basename(p.exe()) == name:
+                ls.append(p)
+        except psutil.AccessDenied:
+            pass
     return ls
 
 
@@ -18,16 +21,19 @@ def wait_process_close(name):
 
 def wait_process_open(name: str):
     while True:
-        for p in psutil.process_iter(["exe"]):
-            if p.exe() and os.path.basename(p.exe()) == name:
-                return True
+        procs = find_procs_by_name(name)
+        if (len(procs) > 0):
+            return True
         sleep(1)
 
 
 def kill_all(nameList):
     ls = []
     for p in psutil.process_iter(["exe"]):
-        if p.exe() and os.path.basename(p.exe()) in nameList:
-            p.kill()
-            ls.append(p)
+        try:
+            if os.path.basename(p.exe()) in nameList:
+                p.kill()
+                ls.append(p)
+        except psutil.AccessDenied:
+            pass
     psutil.wait_procs(ls)
