@@ -8,7 +8,7 @@ PrivateYaml = Path(LocalAppData) / "Riot Games" / \
 
 
 def read_yaml(file):
-    f = open(file)
+    f = open(file, "r")
     data = yaml.load(f, yaml.Loader)
     f.close()
     return data
