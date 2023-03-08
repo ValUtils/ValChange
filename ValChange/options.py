@@ -35,7 +35,7 @@ def set_options(cUser: ChangeUser):
 
 def restore_options(cUser: ChangeUser):
     if (cUser.cfg in config_list() or cUser.pull):
-        config("restore", cUser.user, "")
+        config("restore", cUser.user, -1)
     if (cUser.cfg in load_list(cUser.username)):
         loadout("dump", cUser.user, cUser.cfg)
         loadout("restore", cUser.user, "")
