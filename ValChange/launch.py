@@ -45,4 +45,4 @@ def launch_valorant():
     wait_process_open("VALORANT.exe")
     runs(programs.afterLaunch)
     wait_process_close("VALORANT.exe")
-    kill_all([p.path.name for p in programs.list])
+    kill_all([p.path.name for p in programs.list if p.close])
