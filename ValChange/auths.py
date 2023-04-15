@@ -13,7 +13,7 @@ def get_cookies(session: requests.Session, user: User):
 
     r = session.put(
         f'https://auth.riotgames.com/api/v1/authorization', json=data)
-    if ("error" in data):
+    if "error" in data:
         raise BaseException(data['error'])
 
     cookies = r.cookies.get_dict()

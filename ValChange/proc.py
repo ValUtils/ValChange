@@ -23,7 +23,7 @@ def wait_process_close(name: str):
 def wait_process_open(name: str):
     while True:
         procs = find_procs_by_name(name)
-        if (len(procs) > 0):
+        if len(procs) > 0:
             return
         sleep(1)
 

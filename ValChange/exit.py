@@ -16,7 +16,7 @@ lockFile: Path = utilsPath / "change" / "lock"
 def restore_all():
     data = json_read(lockFile)
     cUser = ChangeUser.from_dict(data)
-    if (cUser.isDefault):
+    if cUser.isDefault:
         return
     get_password(cUser)
     restore_options(cUser)
@@ -34,14 +34,14 @@ def unlock():
 
 
 def fault():
-    if (not lockFile.exists()):
+    if not lockFile.exists():
         return
     restore_all()
     unlock()
 
 
 def clean_exit(cUser: ChangeUser):
-    if (not cUser.isDefault):
+    if not cUser.isDefault:
         restore_cookies()
     kill_all(riotImages)
     kill_all([p.path.name for p in get_programs().list])

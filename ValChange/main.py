@@ -20,7 +20,7 @@ def create_tray(cUser: ChangeUser):
 
 
 def launch(cUser: ChangeUser):
-    if (cUser.isDefault):
+    if cUser.isDefault:
         launch_valorant()
         return
     get_password(cUser)

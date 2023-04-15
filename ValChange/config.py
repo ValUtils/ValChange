@@ -14,7 +14,7 @@ def switcher_read(file):
 
 
 def get_username(settings: Settings):
-    if (len(argv) <= 1):
+    if len(argv) <= 1:
         return settings.defaultUser
     init_vault()
     alias = argv[1]

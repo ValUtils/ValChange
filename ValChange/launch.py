@@ -29,9 +29,9 @@ def get_programs():
         program = Program(Path(p["path"]), p["type"],
                           p["beforeLaunch"], p["close"])
         programs.list.append(program)
-        if (program.type == "launcher"):
+        if program.type == "launcher":
             programs.launcher = program
-        elif (program.beforeLaunch):
+        elif program.beforeLaunch:
             programs.beforeLaunch.append(program)
         else:
             programs.afterLaunch.append(program)

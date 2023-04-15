@@ -25,17 +25,17 @@ def pull_prefs(cUser: ChangeUser):
 
 
 def set_options(cUser: ChangeUser):
-    if (cUser.pull):
+    if cUser.pull:
         pull_prefs(cUser)
-    elif (cUser.cfg in config_list()):
+    elif cUser.cfg in config_list():
         config("import", cUser.user, cUser.cfg)
-    if (cUser.cfg in load_list(cUser.username)):
+    if cUser.cfg in load_list(cUser.username):
         loadout("import", cUser.user, cUser.cfg)
 
 
 def restore_options(cUser: ChangeUser):
-    if (cUser.cfg in config_list() or cUser.pull):
+    if cUser.cfg in config_list() or cUser.pull:
         config("restore", cUser.user, -1)
-    if (cUser.cfg in load_list(cUser.username)):
+    if cUser.cfg in load_list(cUser.username):
         loadout("dump", cUser.user, cUser.cfg)
         loadout("restore", cUser.user, "")
