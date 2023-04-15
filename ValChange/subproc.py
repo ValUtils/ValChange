@@ -11,7 +11,11 @@ def run_fn(fn):
 
 
 def run(program: Program):
-    thread = Thread(target=lambda: subprocess.run("", executable=program.path))
+    def subrun():
+        path = program.path
+        cwd = program.path.parent
+        subprocess.run("", executable=path, cwd=cwd)
+    thread = Thread(target=subrun)
     thread.start()
 
 
