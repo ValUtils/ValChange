@@ -1,6 +1,6 @@
 import requests
 from ValLib import User
-from ValLib.riot import setup_session, setup_auth
+from ValLib.riot import setup_session, setup_auth, AuthException
 
 
 def get_cookies(session: requests.Session, user: User):
@@ -14,7 +14,7 @@ def get_cookies(session: requests.Session, user: User):
     r = session.put(
         f'https://auth.riotgames.com/api/v1/authorization', json=data)
     if "error" in data:
-        raise BaseException(data['error'])
+        raise AuthException(data['error'])
 
     cookies = r.cookies.get_dict()
     return cookies
