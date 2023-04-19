@@ -1,5 +1,5 @@
 from sys import argv
-from ValVault import get_pass, get_name, init_vault, User
+from ValVault.terminal import get_pass, get_name, init_vault, User
 from ValStorage import get_settings, json_read, json_write, utilsPath
 
 from .structs import ChangeUser, Settings
