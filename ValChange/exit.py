@@ -3,7 +3,7 @@ from pathlib import Path
 from ValStorage import json_read, json_write, utilsPath
 
 from .proc import kill_all
-from .structs import ChangeUser, Settings
+from .structs import ChangeUser
 from .config import get_password
 from .switch import restore_cookies
 from .options import restore_options
