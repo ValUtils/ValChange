@@ -46,3 +46,11 @@ class Programs():
     afterLaunch: List[Program] = field(default_factory=list)
     list: List[Program] = field(default_factory=list)
     launcher: Program = field(init=False)
+
+
+@dataclass
+class Product():
+    root: Path
+    path: Path
+    paks: Path
+    locale: str
