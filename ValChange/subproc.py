@@ -1,6 +1,7 @@
 import subprocess
 from typing import List
 from threading import Thread
+from pathlib import Path
 
 from .structs import Program
 
@@ -8,6 +9,13 @@ from .structs import Program
 def run_fn(fn):
     thread = Thread(target=fn)
     thread.start()
+
+
+def subrun(command: str, cwd=Path.cwd()):
+    startupinfo = subprocess.STARTUPINFO()
+    startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+    p = subprocess.Popen(command, cwd=cwd, startupinfo=startupinfo)
+    p.wait()
 
 
 def run(program: Program):
