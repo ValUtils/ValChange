@@ -15,6 +15,11 @@ def find_procs_by_name(name: str):
     return ls
 
 
+def process_exists(name: str):
+    procs = find_procs_by_name(name)
+    return len(procs) > 0
+
+
 def wait_process_close(name: str):
     ls = find_procs_by_name(name)
     psutil.wait_procs(ls)
@@ -22,8 +27,7 @@ def wait_process_close(name: str):
 
 def wait_process_open(name: str):
     while True:
-        procs = find_procs_by_name(name)
-        if len(procs) > 0:
+        if process_exists(name):
             return
         sleep(1)
 
