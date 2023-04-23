@@ -5,10 +5,18 @@ from pathlib import Path
 
 from .structs import Program
 
+pool: List[Thread] = []
+
 
 def run_fn(fn):
     thread = Thread(target=fn)
+    pool.append(thread)
     thread.start()
+
+
+def wait_threads():
+    for t in pool:
+        t.join()
 
 
 def subrun(command: str, cwd=Path.cwd()):

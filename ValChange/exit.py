@@ -9,6 +9,7 @@ from .switch import restore_cookies
 from .options import restore_options
 from .launch import get_programs
 from .switch import restore_cookies, images as riotImages
+from .subproc import wait_threads
 
 lockFile: Path = utilsPath / "change" / "lock"
 
@@ -45,4 +46,5 @@ def clean_exit(cUser: ChangeUser):
         restore_cookies()
     kill_all(riotImages)
     kill_all([p.path.name for p in get_programs().list if p.close])
+    wait_threads()
     unlock()
