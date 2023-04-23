@@ -10,6 +10,7 @@ from .options import restore_options
 from .launch import get_programs
 from .switch import restore_cookies, images as riotImages
 from .subproc import wait_threads
+from .locale import unlink
 
 lockFile: Path = utilsPath / "change" / "lock"
 
@@ -39,6 +40,7 @@ def fault():
         return
     restore_all()
     unlock()
+    unlink()
 
 
 def clean_exit(cUser: ChangeUser):

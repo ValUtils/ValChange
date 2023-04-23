@@ -5,6 +5,7 @@ from ValImgs import get_imgs
 from .exit import fault, lock, unlock, clean_exit
 from .config import get_config, get_password
 from .launch import launch_valorant, valorant_start
+from .locale import localization
 from .structs import ChangeUser
 
 
@@ -21,6 +22,7 @@ def create_tray(cUser: ChangeUser):
 
 def launch(cUser: ChangeUser):
     if cUser.isDefault:
+        localization(cUser)
         launch_valorant()
         return
     get_password(cUser)

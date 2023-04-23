@@ -7,12 +7,15 @@ from .switch import switch_user, restore_user
 from .options import set_options, restore_options
 from .proc import kill_all, wait_process_close, wait_process_open
 from .product import get_riot_installs
+from .locale import localization
 
 
 def valorant_start(cUser: ChangeUser):
     set_options(cUser)
 
     switch_user(cUser.user)
+
+    localization(cUser)
 
     run_fn(launch_valorant)
     wait_process_open("VALORANT.exe")

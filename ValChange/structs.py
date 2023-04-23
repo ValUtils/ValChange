@@ -7,6 +7,8 @@ from ValLib import User
 
 @dataclass
 class Settings(DataClassJsonMixin):
+    textLocale: str = ""
+    voiceLocale: str = ""
     defaultConfig: str = ""
     defaultUser: str = ""
     pull: bool = False
