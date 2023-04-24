@@ -1,4 +1,3 @@
-from os import remove
 from pathlib import Path
 from ValStorage import json_read, json_write, utilsPath
 
