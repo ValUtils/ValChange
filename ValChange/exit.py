@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from .proc import kill_all
+from .proc import kill_all, process_exists
 from .structs import ChangeUser
 from .config import get_password
 from .switch import restore_cookies
@@ -42,10 +42,18 @@ def fault():
     unlink()
 
 
+def wait(started: bool):
+    if started:
+        wait_threads()
+        return
+    unlink()
+
+
 def clean_exit(cUser: ChangeUser):
     if not cUser.isDefault:
         restore_cookies()
+    started = process_exists("VALORANT-Win64-Shipping.exe")
     kill_all(riotImages)
     kill_all([p.path.name for p in get_programs().list if p.close])
-    wait_threads()
+    wait(started)
     unlock()
