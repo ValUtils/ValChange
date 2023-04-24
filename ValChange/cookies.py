@@ -3,9 +3,9 @@ from pathlib import Path
 
 from .storage import read_yaml, write_yaml
 
-LocalAppData = getenv("LocalAppData", "")
-PrivateYaml = Path(LocalAppData) / "Riot Games" / \
-    "Riot Client" / "Data" / "RiotGamesPrivateSettings.yaml"
+LocalAppData = Path(getenv("LocalAppData", ""))
+RiotClient = LocalAppData / "Riot Games" / "Riot Client"
+PrivateYaml = RiotClient / "Data" / "RiotGamesPrivateSettings.yaml"
 
 
 def get_cookies():
