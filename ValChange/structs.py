@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from dataclasses_json import DataClassJsonMixin
+from dataclasses_json import DataClassJsonMixin, config
 from pathlib import Path
 from typing import List
 from ValLib import User
@@ -35,8 +35,8 @@ class ChangeUser(DataClassJsonMixin):
 
 
 @dataclass
-class Program():
-    path: Path
+class Program(DataClassJsonMixin):
+    path: Path = field(metadata=config(decoder=Path))
     type: str
     beforeLaunch: bool
     close: bool

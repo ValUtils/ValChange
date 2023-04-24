@@ -29,8 +29,7 @@ def get_programs():
     programsData = json_read(changePath / "programs.json")
     programs = Programs()
     for p in programsData:
-        program = Program(Path(p["path"]), p["type"],
-                          p["beforeLaunch"], p["close"])
+        program = Program.from_dict(p)
         programs.list.append(program)
         if program.type == "launcher":
             programs.launcher = program
