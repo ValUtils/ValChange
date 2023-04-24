@@ -2,7 +2,7 @@ from ValLib.api import get_region
 from ValLib import authenticate
 
 from ..structs import ChangeUser
-from ..product import product_path
+from ..riot import product_path
 from ..storage import read_yaml, write_yaml
 
 from .manifest import *

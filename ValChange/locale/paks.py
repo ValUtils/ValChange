@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from ..subproc import subrun
-from ..product import get_product_info
+from ..riot import get_product_info
 from ..storage import get_settings, json_write, changePath
 
 from .folders import *

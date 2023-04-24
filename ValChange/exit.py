@@ -4,7 +4,7 @@ from .proc import kill_all
 from .structs import ChangeUser
 from .config import get_password
 from .switch import restore_cookies
-from .options import restore_options
+from .riot import restore_options
 from .launch import get_programs
 from .switch import restore_cookies, images as riotImages
 from .subproc import wait_threads

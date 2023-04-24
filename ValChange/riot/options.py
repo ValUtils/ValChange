@@ -3,7 +3,7 @@ from ValLib.api import get_preference, set_preference
 from ValConfig.config import config, config_list
 from ValConfig.loadout import loadout, load_list
 
-from .structs import ChangeUser
+from ..structs import ChangeUser
 
 
 def get_prefs(username):

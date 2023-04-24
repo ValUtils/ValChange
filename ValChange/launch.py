@@ -3,9 +3,8 @@ from pathlib import Path
 from .subproc import run, run_fn, runs, subrun
 from .structs import ChangeUser, Program, Programs
 from .switch import switch_user, restore_user
-from .options import set_options, restore_options
 from .proc import kill_all, wait_process_close, wait_process_open
-from .product import get_riot_installs
+from .riot import get_riot_installs, set_options, restore_options
 from .locale import localization
 from .storage import json_read, changePath
 

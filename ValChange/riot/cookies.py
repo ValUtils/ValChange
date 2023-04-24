@@ -1,7 +1,7 @@
 from os import getenv
 from pathlib import Path
 
-from .storage import read_yaml, write_yaml
+from ..storage import read_yaml, write_yaml
 
 LocalAppData = Path(getenv("LocalAppData", ""))
 RiotClient = LocalAppData / "Riot Games" / "Riot Client"

@@ -2,7 +2,7 @@ from dataclasses import dataclass, field
 from dataclasses_json import DataClassJsonMixin
 from pathlib import Path
 
-from ..structs import Product
+from ..riot import Product
 
 
 @dataclass
