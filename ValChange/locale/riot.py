@@ -3,7 +3,7 @@ from ValLib import authenticate
 
 from ..structs import ChangeUser
 from ..product import product_path
-from ..cookies import read_yaml, write_yaml
+from ..storage import read_yaml, write_yaml
 
 from .manifest import *
 

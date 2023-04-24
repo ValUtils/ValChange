@@ -1,20 +1,11 @@
-import yaml
 from os import getenv
 from pathlib import Path
+
+from .storage import read_yaml, write_yaml
 
 LocalAppData = getenv("LocalAppData", "")
 PrivateYaml = Path(LocalAppData) / "Riot Games" / \
     "Riot Client" / "Data" / "RiotGamesPrivateSettings.yaml"
-
-
-def read_yaml(file):
-    with open(file, "r") as f:
-        return yaml.load(f, yaml.Loader)
-
-
-def write_yaml(file, data):
-    with open(file, "w") as f:
-        yaml.safe_dump(data, f, indent=4)
 
 
 def get_cookies():
