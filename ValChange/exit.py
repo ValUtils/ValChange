@@ -1,5 +1,4 @@
 from pathlib import Path
-from ValStorage import json_read, json_write, utilsPath
 
 from .proc import kill_all
 from .structs import ChangeUser
@@ -10,8 +9,9 @@ from .launch import get_programs
 from .switch import restore_cookies, images as riotImages
 from .subproc import wait_threads
 from .locale import unlink
+from .storage import json_read, json_write, changePath
 
-lockFile: Path = utilsPath / "change" / "lock"
+lockFile: Path = changePath / "lock"
 
 
 def restore_all():

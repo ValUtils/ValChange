@@ -1,13 +1,13 @@
 from pathlib import Path
 
 from .subproc import run, run_fn, runs, subrun
-from .config import switcher_read
 from .structs import ChangeUser, Program, Programs
 from .switch import switch_user, restore_user
 from .options import set_options, restore_options
 from .proc import kill_all, wait_process_close, wait_process_open
 from .product import get_riot_installs
 from .locale import localization
+from .storage import json_read, changePath
 
 
 def valorant_start(cUser: ChangeUser):
@@ -27,7 +27,7 @@ def valorant_start(cUser: ChangeUser):
 
 
 def get_programs():
-    programsData = switcher_read("programs.json")
+    programsData = json_read(changePath / "programs.json")
     programs = Programs()
     for p in programsData:
         program = Program(Path(p["path"]), p["type"],

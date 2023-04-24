@@ -1,14 +1,13 @@
-
 from pathlib import Path
-from ValStorage import get_settings, json_write, utilsPath
 
 from ..subproc import subrun
 from ..product import get_product_info
+from ..storage import get_settings, json_write, changePath
 
 from .folders import *
 from .structs import LocaleInfo, Manifest
 
-locale_path = utilsPath / "change" / "locale.json"
+locale_path = changePath / "locale.json"
 locale_info = get_settings(LocaleInfo, locale_path)
 product = get_product_info()
 lines = product.root / "TextPaks"
