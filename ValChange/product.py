@@ -3,7 +3,7 @@ from pathlib import Path
 
 from ValStorage import json_read
 
-from .cookies import read_yaml
+from .storage import read_yaml
 from .structs import Product
 
 ProgramData = getenv("ProgramData", "")
