@@ -14,12 +14,18 @@ images = [
     "RiotClientUxRender.exe"
 ]
 
+switched = False
+
 
 def store_cookies():
     json_write(get_cookies(), changePath / "cookies.json")
+    global switched
+    switched = True
 
 
 def restore_cookies():
+    if not switched:
+        return
     save_cookies(json_read(changePath / "cookies.json"))
 
 

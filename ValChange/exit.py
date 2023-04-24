@@ -49,11 +49,10 @@ def wait(started: bool):
     unlink()
 
 
-def clean_exit(cUser: ChangeUser):
-    if not cUser.isDefault:
-        restore_cookies()
+def clean_exit():
     started = process_exists("VALORANT-Win64-Shipping.exe")
     kill_all(riotImages)
     kill_all([p.path.name for p in get_programs().list if p.close])
+    restore_cookies()
     wait(started)
     unlock()

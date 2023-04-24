@@ -11,7 +11,7 @@ from .structs import ChangeUser
 
 def create_tray(cUser: ChangeUser):
     def on_quit_callback(systray: SysTrayIcon):
-        clean_exit(cUser)
+        clean_exit()
         quit(0)
     menu_options = ((f"Current user: {cUser.username}", None, lambda: ""),)
     systray = SysTrayIcon(get_imgs("icon.ico"), "ValChange",
