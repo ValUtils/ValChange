@@ -13,9 +13,8 @@ def read_yaml(file):
 
 
 def write_yaml(file, data):
-    f = open(file, "w")
-    yaml.safe_dump(data, f, indent=4)
-    f.close()
+    with open(file, "w") as f:
+        yaml.safe_dump(data, f, indent=4)
 
 
 def get_cookies():
