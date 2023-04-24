@@ -1,9 +1,7 @@
 from os import getenv
 from pathlib import Path
 
-from ValStorage import json_read
-
-from .storage import read_yaml
+from .storage import read_yaml, json_read
 from .structs import Product
 
 ProgramData = getenv("ProgramData", "")
