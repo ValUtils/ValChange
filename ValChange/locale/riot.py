@@ -3,6 +3,7 @@ from ValLib import authenticate
 
 from ..structs import ChangeUser
 from ..riot import product_path
+from ..config import get_password
 from ..storage import read_yaml, write_yaml
 
 from .manifest import *
@@ -25,6 +26,8 @@ def get_manifest(cUser: ChangeUser):
     try:
         return get_seamless_manifest()
     except PatchDifferenceException:
+        if cUser.defaultUser:
+            get_password(cUser)
         auth = authenticate(cUser.user)
         region = get_region(auth)
         return get_region_manifest(region)
