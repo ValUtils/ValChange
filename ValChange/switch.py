@@ -1,7 +1,8 @@
 from ValLib import User
 
 from .proc import kill_all
-from .riot import get_cookies, save_cookies, client_auth
+from .helper import get_auth
+from .riot import get_cookies, save_cookies
 from .storage import json_read, json_write, changePath
 
 images = [
@@ -32,7 +33,7 @@ def restore_cookies():
 def switch_user(user: User):
     store_cookies()
 
-    cookies = client_auth(user)
+    cookies = get_auth(user).cookies
     kill_all(images)
     save_cookies(cookies)
 
