@@ -57,8 +57,10 @@ def valorant_launcher(programs: Programs):
 def launch_valorant():
     programs = get_programs()
     runs(programs.beforeLaunch)
+    [wait_process_open(p.waitFor) for p in programs.list if p.waitFor]
     valorant_launcher(programs)
     wait_process_open("VALORANT.exe")
     runs(programs.afterLaunch)
     wait_process_close("VALORANT.exe")
     kill_all([p.path.name for p in programs.list if p.close])
+    kill_all([p.extraExecutables for p in programs.list if p.close])

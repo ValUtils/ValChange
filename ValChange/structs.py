@@ -40,6 +40,9 @@ class Program(DataClassJsonMixin):
     type: str
     beforeLaunch: bool
     close: bool
+    extraExecutables: str = ""
+    waitFor: str = ""
+    arguments: list[str] = field(default_factory=list)
 
 
 @dataclass

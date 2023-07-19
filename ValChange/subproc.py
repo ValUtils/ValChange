@@ -30,7 +30,7 @@ def run(program: Program):
     def subrun():
         path = program.path
         cwd = program.path.parent
-        subprocess.run("", executable=path, cwd=cwd)
+        subprocess.run(args=program.arguments, executable=path, cwd=cwd)
     thread = Thread(target=subrun)
     thread.start()
 
