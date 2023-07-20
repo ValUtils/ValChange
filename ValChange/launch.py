@@ -1,9 +1,10 @@
 from pathlib import Path
+from time import sleep
 
 from .subproc import run, run_fn, runs, subrun
 from .structs import ChangeUser, Program, Programs
 from .switch import switch_user, restore_user
-from .proc import kill_all, wait_process_close, wait_process_open
+from .proc import kill_all, wait_process_close, wait_process_open, process_exists
 from .riot import get_riot_installs, set_options, restore_options
 from .locale import localization
 from .storage import json_read, changePath
@@ -47,6 +48,17 @@ def riot_launcher():
     subrun(f'"{client_path}" {args}')
 
 
+def client_hack():
+    while True:
+        if process_exists("VALORANT.exe"):
+            return
+        if process_exists("RiotClientUx.exe"):
+            break
+        sleep(1)
+    sleep(1)
+    run_fn(riot_launcher)
+
+
 def valorant_launcher(programs: Programs):
     if programs.launcher:
         run(programs.launcher)
@@ -59,6 +71,7 @@ def launch_valorant():
     runs(programs.beforeLaunch)
     [wait_process_open(p.waitFor) for p in programs.list if p.waitFor]
     valorant_launcher(programs)
+    client_hack()
     wait_process_open("VALORANT.exe")
     runs(programs.afterLaunch)
     wait_process_close("VALORANT.exe")
