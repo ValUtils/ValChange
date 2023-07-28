@@ -5,11 +5,11 @@ from .structs import ChangeUser
 from .config import get_password
 from .switch import restore_cookies
 from .riot import restore_options
-from .launch import get_programs
 from .switch import restore_cookies, images as riotImages
 from .subproc import wait_threads
 from .locale import unlink
 from .storage import json_read, json_write, changePath
+from .programs import exit_programs, get_programs
 
 lockFile: Path = changePath / "lock"
 
@@ -47,7 +47,7 @@ def wait(started: bool):
         wait_threads()
         return
     unlink()
-    kill_all([p.path.name for p in get_programs().list if p.close])
+    exit_programs(get_programs())
 
 
 def clean_exit():

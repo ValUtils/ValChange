@@ -1,13 +1,13 @@
 from pathlib import Path
 from time import sleep
 
-from .subproc import run, run_fn, runs, subrun
-from .structs import ChangeUser, Program, Programs
+from .subproc import run, run_fn, subrun
+from .structs import ChangeUser, Programs
 from .switch import switch_user, restore_user
-from .proc import kill_all, wait_process_close, wait_process_open, process_exists
+from .proc import wait_process_close, wait_process_open, process_exists
 from .riot import get_riot_installs, set_options, restore_options
+from .programs import get_programs, pre_launch, post_launch, exit_programs
 from .locale import localization
-from .storage import json_read, changePath
 
 
 def valorant_start(cUser: ChangeUser):
@@ -24,21 +24,6 @@ def valorant_start(cUser: ChangeUser):
     restore_user()
 
     restore_options(cUser)
-
-
-def get_programs():
-    programsData = json_read(changePath / "programs.json")
-    programs = Programs()
-    for p in programsData:
-        program = Program.from_dict(p)
-        programs.list.append(program)
-        if program.type == "launcher":
-            programs.launcher = program
-        elif program.beforeLaunch:
-            programs.beforeLaunch.append(program)
-        else:
-            programs.afterLaunch.append(program)
-    return programs
 
 
 def riot_launcher():
@@ -68,12 +53,10 @@ def valorant_launcher(programs: Programs):
 
 def launch_valorant():
     programs = get_programs()
-    runs(programs.beforeLaunch)
-    [wait_process_open(p.waitFor) for p in programs.list if p.waitFor]
+    pre_launch(programs)
     valorant_launcher(programs)
     client_hack()
     wait_process_open("VALORANT.exe")
-    runs(programs.afterLaunch)
+    post_launch(programs)
     wait_process_close("VALORANT.exe")
-    kill_all([p.path.name for p in programs.list if p.close])
-    kill_all([p.extraExecutables for p in programs.list if p.close])
+    exit_programs(programs)

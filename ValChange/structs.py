@@ -37,17 +37,14 @@ class ChangeUser(DataClassJsonMixin):
 @dataclass
 class Program(DataClassJsonMixin):
     path: Path = field(metadata=config(decoder=Path))
-    type: str
-    beforeLaunch: bool
-    close: bool
+    beforeLaunch: bool = True
+    close: bool = True
     extraExecutables: str = ""
     waitFor: str = ""
     arguments: list[str] = field(default_factory=list)
 
 
 @dataclass
-class Programs():
-    beforeLaunch: List[Program] = field(default_factory=list)
-    afterLaunch: List[Program] = field(default_factory=list)
-    list: List[Program] = field(default_factory=list)
-    launcher: Program = field(init=False)
+class Programs(DataClassJsonMixin):
+    launcher: Program = field(default=Program(Path("")))
+    extra: List[Program] = field(default_factory=list)
