@@ -1,10 +1,8 @@
-from ValLib.api import get_region
-from ValLib import authenticate
-
 from ..structs import ChangeUser
 from ..riot import product_path
 from ..config import get_password
 from ..storage import read_yaml, write_yaml
+from ..helper import get_extra_auth
 
 from .manifest import *
 
@@ -28,6 +26,5 @@ def get_manifest(cUser: ChangeUser):
     except PatchDifferenceException:
         if cUser.defaultUser:
             get_password(cUser)
-        auth = authenticate(cUser.user)
-        region = get_region(auth)
-        return get_region_manifest(region)
+        auth = get_extra_auth(cUser.user)
+        return get_region_manifest(auth.region)
