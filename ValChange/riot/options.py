@@ -14,8 +14,9 @@ from ValConfig.loadout import (
     load_list
 )
 
-from ..helper import get_auth, get_extra_auth
 from ..structs import ChangeUser
+
+from .auth import get_auth, get_extra_auth
 
 
 def get_prefs(username):

@@ -1,8 +1,7 @@
 from ValLib import User
 
 from .proc import kill_all
-from .helper import get_auth
-from .riot import get_cookies, save_cookies
+from .riot import get_cookies, save_cookies, get_auth
 from .storage import json_read, json_write, changePath
 
 images = [

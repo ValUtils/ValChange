@@ -1,8 +1,7 @@
 from ..structs import ChangeUser
-from ..riot import product_path
+from ..riot import product_path, get_extra_auth
 from ..config import get_password
 from ..storage import read_yaml, write_yaml
-from ..helper import get_extra_auth
 
 from .manifest import *
 
