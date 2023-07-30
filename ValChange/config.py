@@ -1,8 +1,9 @@
 from argparse import ArgumentParser
-from ValVault.terminal import get_pass, get_name, init_vault, User
 
+from ValVault.terminal import User, get_name, get_pass, init_vault
+
+from .storage import changePath, get_settings
 from .structs import ChangeUser, Settings
-from .storage import get_settings, changePath
 
 
 def get_args(settings: Settings):

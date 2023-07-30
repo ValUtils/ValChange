@@ -1,9 +1,11 @@
-from infi.systray import SysTrayIcon
 from os import _exit as quit
+
+from infi.systray import SysTrayIcon
+
 from ValImgs import get_imgs
 
-from .exit import fault, lock, unlock, clean_exit
 from .config import get_config, get_password
+from .exit import clean_exit, fault, lock, unlock
 from .launch import launch_valorant, valorant_start
 from .locale import localization
 from .structs import ChangeUser

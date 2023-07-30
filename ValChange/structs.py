@@ -1,7 +1,9 @@
 from dataclasses import dataclass, field
-from dataclasses_json import DataClassJsonMixin, config
 from pathlib import Path
 from typing import List
+
+from dataclasses_json import DataClassJsonMixin, config
+
 from ValLib import User
 
 

@@ -1,8 +1,8 @@
 
-import requests
-
-from urllib.parse import urlparse as URL
 from pathlib import Path
+from urllib.parse import urlparse as URL
+
+import requests
 
 from .structs import Manifest
 

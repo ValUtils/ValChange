@@ -1,7 +1,7 @@
 import subprocess
-from typing import List
-from threading import Thread
 from pathlib import Path
+from threading import Thread
+from typing import List
 
 from .structs import Program
 

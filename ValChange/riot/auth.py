@@ -1,7 +1,8 @@
 from typing import Dict
-from ValVault.terminal import get_auth
+
+from ValLib import ExtraAuth, User
 from ValLib.api import get_region
-from ValLib import User, ExtraAuth
+from ValVault.terminal import get_auth
 
 _regions: Dict[User, str] = {}
 

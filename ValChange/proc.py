@@ -1,7 +1,8 @@
 import os
-import psutil
 from time import sleep
 from typing import List
+
+import psutil
 
 
 def find_procs_by_name(name: str):

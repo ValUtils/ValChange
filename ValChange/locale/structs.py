@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
-from dataclasses_json import DataClassJsonMixin
 from pathlib import Path
+
+from dataclasses_json import DataClassJsonMixin
 
 from ..riot import Product
 

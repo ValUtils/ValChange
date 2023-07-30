@@ -1,21 +1,20 @@
-from ValVault.terminal import get_pass, User
-from ValLib.api import get_preference, set_preference
 from ValConfig.config import (
     backup as backup_config,
+    config_list,
     import_from_file as import_config,
-    restore as restore_config,
-    config_list
+    restore as restore_config
 )
 from ValConfig.loadout import (
     backup as backup_loadout,
     import_from_file as import_loadout,
-    save_to_file as dump_loadout,
+    load_list,
     restore as restore_loadout,
-    load_list
+    save_to_file as dump_loadout
 )
+from ValLib.api import get_preference, set_preference
+from ValVault.terminal import User, get_pass
 
 from ..structs import ChangeUser
-
 from .auth import get_auth, get_extra_auth
 
 

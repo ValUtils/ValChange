@@ -1,9 +1,8 @@
-from ..subproc import run_fn
 from ..structs import ChangeUser
-
+from ..subproc import run_fn
 from .links import link
-from .riot import set_locale, get_manifest
-from .paks import download_locale, download, redownload, remove_unused
+from .paks import download, download_locale, redownload, remove_unused
+from .riot import get_manifest, set_locale
 
 
 def localization(cUser: ChangeUser):

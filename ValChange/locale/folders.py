@@ -1,5 +1,5 @@
 from pathlib import Path
-from shutil import rmtree, move
+from shutil import move, rmtree
 
 
 def get_folders(path: Path):

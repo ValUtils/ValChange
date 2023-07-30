@@ -1,9 +1,9 @@
 from typing import List
 
-from .storage import get_settings, changePath
-from .structs import Programs, Program
+from .proc import kill_all, wait_process_open
+from .storage import changePath, get_settings
+from .structs import Program, Programs
 from .subproc import run, run_fn, runs, subrun
-from .proc import wait_process_open, kill_all
 
 
 def waits_open(programs: List[str]):

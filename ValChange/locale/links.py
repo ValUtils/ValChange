@@ -1,8 +1,7 @@
 from pathlib import Path
 
-from ..riot import get_product_info
 from ..proc import wait_process_close, wait_process_open
-
+from ..riot import get_product_info
 from .structs import Linker
 
 

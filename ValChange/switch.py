@@ -1,8 +1,8 @@
 from ValLib import User
 
 from .proc import kill_all
-from .riot import get_cookies, save_cookies, get_auth
-from .storage import json_read, json_write, changePath
+from .riot import get_auth, get_cookies, save_cookies
+from .storage import changePath, json_read, json_write
 
 images = [
     "LeagueClient.exe",

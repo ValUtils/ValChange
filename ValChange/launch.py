@@ -1,13 +1,13 @@
 from pathlib import Path
 from time import sleep
 
-from .subproc import run, run_fn, subrun
-from .structs import ChangeUser, Programs
-from .switch import switch_user, restore_user
-from .proc import wait_process_close, wait_process_open, process_exists
-from .riot import get_riot_installs, set_options, restore_options
-from .programs import get_programs, pre_launch, post_launch, exit_programs
 from .locale import localization
+from .proc import process_exists, wait_process_close, wait_process_open
+from .programs import exit_programs, get_programs, post_launch, pre_launch
+from .riot import get_riot_installs, restore_options, set_options
+from .structs import ChangeUser, Programs
+from .subproc import run, run_fn, subrun
+from .switch import restore_user, switch_user
 
 
 def valorant_start(cUser: ChangeUser):

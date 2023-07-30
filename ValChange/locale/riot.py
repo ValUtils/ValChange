@@ -1,9 +1,8 @@
-from ..structs import ChangeUser
-from ..riot import product_path, get_extra_auth
-from ..config import get_password
-from ..storage import read_yaml, write_yaml
-
 from .manifest import *
+from ..config import get_password
+from ..riot import get_extra_auth, product_path
+from ..storage import read_yaml, write_yaml
+from ..structs import ChangeUser
 
 
 class InvalidLocaleException(BaseException):
