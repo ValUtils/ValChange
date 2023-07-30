@@ -16,7 +16,6 @@ def create_tray(cUser: ChangeUser):
     menu_options = ((f"Current user: {cUser.username}", None, lambda: ""),)
     systray = SysTrayIcon(get_imgs("icon.ico"), "ValChange",
                           menu_options, on_quit=on_quit_callback)
-    systray.start()
     return systray
 
 
@@ -33,6 +32,8 @@ def change(cUser: ChangeUser):
     lock(cUser)
 
     systray = create_tray(cUser)
+    if cUser.systray:
+        systray.start()
 
     launch(cUser)
 

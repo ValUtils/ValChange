@@ -18,6 +18,7 @@ class Settings(DataClassJsonMixin):
 class ChangeUser(DataClassJsonMixin):
     user: User
     settings: Settings
+    systray: bool
     defaultUser: str = field(init=False)
     cfg: str = field(init=False)
     pull: bool = field(init=False)
