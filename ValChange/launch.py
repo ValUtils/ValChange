@@ -1,6 +1,7 @@
 from pathlib import Path
 from time import sleep
 
+from .debug import Level, log
 from .locale import localization
 from .proc import process_exists, wait_process_close, wait_process_open
 from .programs import exit_programs, get_programs, post_launch, pre_launch
@@ -27,6 +28,7 @@ def valorant_start(cUser: ChangeUser):
 
 
 def riot_launcher():
+    log(Level.DEBUG, "Launching Valorant with RiotLauncher")
     installs = get_riot_installs()
     client_path = Path(installs["rc_default"])
     args = "--launch-product=valorant --launch-patchline=live"
@@ -46,6 +48,8 @@ def client_hack():
 
 def valorant_launcher(programs: Programs):
     if programs.launcher:
+        log(Level.FULL,
+            f"Launching Valorant with {programs.launcher.path.stem}")
         run(programs.launcher)
         return
     run_fn(riot_launcher)

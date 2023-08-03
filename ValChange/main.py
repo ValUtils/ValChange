@@ -5,6 +5,7 @@ from infi.systray import SysTrayIcon
 from ValImgs import get_imgs
 
 from .config import get_config, get_password
+from .debug import Level, log
 from .exit import clean_exit, fault, lock, unlock
 from .launch import launch_valorant, valorant_start
 from .locale import localization
@@ -35,6 +36,7 @@ def change(cUser: ChangeUser):
 
     systray = create_tray(cUser)
     if cUser.systray:
+        log(Level.EXTRA, "Starting systray")
         systray.start()
 
     launch(cUser)

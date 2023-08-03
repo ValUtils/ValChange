@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from .config import get_password
+from .debug import Level, log
 from .locale import unlink
 from .proc import kill_all, process_exists
 from .programs import exit_programs, get_programs
@@ -24,6 +25,7 @@ def restore_all():
 
 
 def lock(cUser: ChangeUser):
+    log(Level.EXTRA, f"Locking user {cUser.username}")
     cUser.user.password = ""
     data = cUser.to_dict()
     json_write(data, lockFile)
@@ -36,6 +38,7 @@ def unlock():
 def fault():
     if not lockFile.exists():
         return
+    log(Level.INFO, "Restoring lockfile")
     restore_all()
     unlock()
     unlink()
@@ -50,6 +53,7 @@ def wait(started: bool):
 
 
 def clean_exit():
+    log(Level.INFO, "Exiting per user command")
     started = process_exists("VALORANT-Win64-Shipping.exe")
     kill_all(riotImages)
     restore_cookies()

@@ -20,6 +20,7 @@ def wait_threads():
 
 
 def subrun(command: str, cwd=Path.cwd()):
+    log(Level.VERBOSE, f"Running without window {command}")
     startupinfo = subprocess.STARTUPINFO()
     startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
     p = subprocess.Popen(command, cwd=cwd, startupinfo=startupinfo)
@@ -27,6 +28,8 @@ def subrun(command: str, cwd=Path.cwd()):
 
 
 def run(program: Program):
+    log(Level.VERBOSE, f"Running {program.path.stem}")
+
     def subrun():
         path = program.path
         cwd = program.path.parent

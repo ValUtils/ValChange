@@ -14,11 +14,13 @@ from ValConfig.loadout import (
 from ValLib.api import get_preference, set_preference
 from ValVault.terminal import User, get_pass
 
+from ..debug import Level, log
 from ..structs import ChangeUser
 from .auth import get_auth, get_extra_auth
 
 
 def get_prefs(username):
+    log(Level.DEBUG, f"Getting preferences for {username}", "riot")
     user = User(username, get_pass(username))
     auth = get_auth(user)
     prefs = get_preference(auth)
@@ -26,11 +28,14 @@ def get_prefs(username):
 
 
 def set_prefs(user, data):
+    log(Level.DEBUG, f"Setting preferences for {user.username}", "riot")
     auth = get_auth(user)
     set_preference(auth, data)
 
 
 def pull_prefs(cUser: ChangeUser):
+    log(Level.DEBUG,
+        f"Pulling prefs from {cUser.defaultUser} to {cUser.username}", "riot")
     prefs = get_prefs(cUser.defaultUser)
     auth = get_auth(cUser.user)
     backup_config(cUser.user, auth)

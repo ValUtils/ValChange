@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from .folders import *
+from ..debug import Level, log
 from ..riot import get_product_info
 from ..storage import changePath, get_settings, json_write
 from ..subproc import subrun
@@ -23,17 +24,20 @@ def pak_path(path: Path):
 
 
 def make_output(path: Path):
+    log(Level.FULL, "Creating output directory", "locale")
     paks = pak_path(path / "output")
     paks.mkdir(parents=True)
 
 
 def link_before_download(path: Path):
+    log(Level.FULL, "Linking old files before downloading", "locale")
     make_output(path)
     paks = pak_path(path / "output")
     link_all(path, paks)
 
 
 def link_missing_files(path: Path):
+    log(Level.FULL, "Linking new files to base directory", "locale")
     paks = pak_path(path / "output")
     link_all(paks, path)
 
@@ -45,23 +49,29 @@ def get_path(manifest: Manifest):
 
 
 def remove_unused(locale: str):
+    log(Level.DEBUG,
+        f"Removing unused paks from Valorant folder for {locale}", "locale")
     paks = pak_path(product.path)
     for f in paks.glob(f"[!{locale}]*?_[Audio|Text]*"):
         f.unlink()
 
 
 def manifest_downloader(manifest: Manifest, args: str, path: Path):
+    log(Level.FULL,
+        f"Downloading manifest {args=} {manifest.region=}", "locale")
     mpath = locale_info.downloader_path
     cargs = f"{manifest.url} --bundles {manifest.bundle}"
     subrun(" ".join((mpath, cargs, args)), path)
 
 
 def download_locale(manifest: Manifest, locale: str):
+    log(Level.DEBUG, f"Downloading locale files for {locale}", "locale")
     args = f"--languages {locale} --output ./"
     manifest_downloader(manifest, args, product.path)
 
 
 def download_text(manifest: Manifest, path: Path, lang=""):
+    log(Level.DEBUG, f"Downloading text paks {lang}", "locale")
     link_before_download(path)
     args = f"--languages {lang} --filter Text"
     manifest_downloader(manifest, args, path)
@@ -70,6 +80,7 @@ def download_text(manifest: Manifest, path: Path, lang=""):
 
 
 def clean_panic(id):
+    log(Level.FULL, "Cleaning panic state", "locale")
     if id in folder_stems(lines):
         move_all(lines / id, lines)
         locale_info.id = id
@@ -77,6 +88,7 @@ def clean_panic(id):
 
 
 def panic():
+    log(Level.DEBUG, "Startnig panic state", "locale")
     locale_info.panic = True
     target = lines / locale_info.id
     target.mkdir(exist_ok=True)

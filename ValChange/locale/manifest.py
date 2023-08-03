@@ -4,6 +4,7 @@ from urllib.parse import urlparse as URL
 
 import requests
 
+from ..debug import Level, log
 from .structs import Manifest
 
 
@@ -16,6 +17,7 @@ class PatchDifferenceException(BaseException):
 
 
 def get_region_configs():
+    log(Level.FULL, "Getting manifest region configs", "locale")
     host = "https://clientconfig.rpg.riotgames.com"
     end_point = "/api/v1/config/public"
     args = {
@@ -29,6 +31,7 @@ def get_region_configs():
 
 
 def get_region_manifest(region: str):
+    log(Level.DEBUG, f"Getting manifest for {region}", "locale")
     configs = get_region_configs()
     items = [c for c in configs if c["id"] == region]
     if not items:
@@ -43,10 +46,13 @@ def get_region_manifest(region: str):
 def get_manifest_id(manifest_url: str):
     url_path = URL(manifest_url).path
     path = Path(url_path)
-    return path.stem
+    id = path.stem
+    log(Level.VERBOSE, f"Manifest {id=}")
+    return id
 
 
 def get_seamless_manifest():
+    log(Level.DEBUG, f"Getting seamless manifest", "locale")
     configs = get_region_configs()
     patches = [c["patch_url"] for c in configs]
     if not len(set(patches)) == 1:

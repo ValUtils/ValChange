@@ -1,5 +1,6 @@
 from ValLib import User
 
+from .debug import Level, log
 from .proc import kill_all
 from .riot import get_auth, get_cookies, save_cookies
 from .storage import changePath, json_read, json_write
@@ -30,6 +31,7 @@ def restore_cookies():
 
 
 def switch_user(user: User):
+    log(Level.DEBUG, f"Switching to {user.username}")
     store_cookies()
 
     cookies = get_auth(user).cookies
@@ -38,5 +40,6 @@ def switch_user(user: User):
 
 
 def restore_user():
+    log(Level.DEBUG, "Restoring user cookies")
     kill_all(images)
     restore_cookies()

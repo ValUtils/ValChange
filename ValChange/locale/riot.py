@@ -1,5 +1,6 @@
 from .manifest import *
 from ..config import get_password
+from ..debug import Level, log
 from ..riot import get_extra_auth, product_path
 from ..storage import read_yaml, write_yaml
 from ..structs import ChangeUser
@@ -10,6 +11,7 @@ class InvalidLocaleException(BaseException):
 
 
 def set_locale(locale: str):
+    log(Level.VERBOSE, f"Setting locale in product.yml to {locale}", "locale")
     product = read_yaml(product_path)
     available_locales = product["locale_data"]["available_locales"]
     if locale not in available_locales:

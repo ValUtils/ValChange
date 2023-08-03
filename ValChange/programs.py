@@ -1,5 +1,6 @@
 from typing import List
 
+from .debug import Level, log
 from .proc import kill_all, wait_process_open
 from .storage import changePath, get_settings
 from .structs import Programs
@@ -17,6 +18,7 @@ def get_programs():
 
 
 def pre_launch(programs: Programs):
+    log(Level.DEBUG, f"Executing pre-launch programs")
     extra = programs.extra
     launch = [p for p in extra if p.beforeLaunch]
     wait = [p.waitFor for p in extra if p.waitFor]
@@ -25,12 +27,14 @@ def pre_launch(programs: Programs):
 
 
 def post_launch(programs: Programs):
+    log(Level.DEBUG, "Executing post-launch programs")
     extra = programs.extra
     launch = [p for p in extra if not p.beforeLaunch]
     runs(launch)
 
 
 def exit_programs(programs: Programs):
+    log(Level.DEBUG, "Killing programs")
     close = [p.path.name for p in programs.extra if p.close]
     extraExecs = [p.extraExecutables for p in programs.extra if p.close]
     kill_all(close)
