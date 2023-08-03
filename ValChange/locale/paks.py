@@ -4,7 +4,7 @@ from .folders import *
 from ..debug import Level, log
 from ..riot import get_product_info
 from ..storage import changePath, get_settings, json_write
-from ..subproc import subrun
+from ..subproc import subrun, subrun_out
 from .structs import LocaleInfo, Manifest
 
 locale_path = changePath / "locale.json"
@@ -56,12 +56,16 @@ def remove_unused(locale: str):
         f.unlink()
 
 
+def manage_output(line: str):
+    log(Level.FULL, line, "locale")
+
+
 def manifest_downloader(manifest: Manifest, args: str, path: Path):
     log(Level.FULL,
         f"Downloading manifest {args=} {manifest.region=}", "locale")
     mpath = locale_info.downloader_path
     cargs = f"{manifest.url} --bundles {manifest.bundle}"
-    subrun(" ".join((mpath, cargs, args)), path)
+    subrun_out(" ".join((mpath, cargs, args)), manage_output, path)
 
 
 def download_locale(manifest: Manifest, locale: str):

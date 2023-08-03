@@ -1,8 +1,9 @@
 import subprocess
 from pathlib import Path
 from threading import Thread
-from typing import List
+from typing import Callable, List
 
+from .debug import Level, log
 from .structs import Program
 
 pool: List[Thread] = []
@@ -19,11 +20,35 @@ def wait_threads():
         t.join()
 
 
-def subrun(command: str, cwd=Path.cwd()):
-    log(Level.VERBOSE, f"Running without window {command}")
+def startup_info():
     startupinfo = subprocess.STARTUPINFO()
     startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
-    p = subprocess.Popen(command, cwd=cwd, startupinfo=startupinfo)
+    return startupinfo
+
+
+def subrun_out(command: str, output: Callable[[str], None], cwd=Path.cwd()):
+    p = subprocess.Popen(
+        command,
+        cwd=cwd,
+        text=True,
+        startupinfo=startup_info(),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+    )
+
+    if p.stdout is None:
+        p.wait()
+        return
+
+    for line in iter(p.stdout.readline, ''):
+        output(line.strip())
+
+    p.wait()
+
+
+def subrun(command: str, cwd=Path.cwd()):
+    log(Level.VERBOSE, f"Running without window {command}")
+    p = subprocess.Popen(command, cwd=cwd, startupinfo=startup_info())
     p.wait()
 
 
