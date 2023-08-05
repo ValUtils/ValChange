@@ -22,6 +22,11 @@ def create_tray(cUser: ChangeUser):
     return systray
 
 
+def destroy_tray(systray: SysTrayIcon):
+    systray._on_quit = None
+    systray.shutdown()
+
+
 def launch(cUser: ChangeUser):
     if cUser.isDefault:
         localization(cUser)
@@ -41,7 +46,7 @@ def change(cUser: ChangeUser):
 
     launch(cUser)
 
-    systray.shutdown()
+    destroy_tray(systray)
     unlock()
 
 
