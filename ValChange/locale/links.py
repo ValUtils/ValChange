@@ -26,6 +26,7 @@ def link(locale: str):
     wait_process_open("VALORANT.exe")
     log(Level.DEBUG, f"Valorant launched, linking text", "locale")
     linker(l.pak_path, l.text_locale)
+    wait_process_open("VALORANT-Win64-Shipping.exe")
     wait_process_close("VALORANT-Win64-Shipping.exe")
     log(Level.DEBUG, f"Valorant stopped, linking original locale", "locale")
     linker(l.pak_path, l.original_locale)
