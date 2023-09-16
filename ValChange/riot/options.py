@@ -49,7 +49,7 @@ def set_options(cUser: ChangeUser):
         auth = get_auth(cUser.user)
         backup_config(cUser.user, auth)
         import_config(cUser.cfg, auth)
-    if cUser.cfg in load_list(cUser.username):
+    if f"{cUser.defaultUser}.json" in load_list(cUser.username):
         auth = get_extra_auth(cUser.user)
         backup_loadout(auth)
         import_loadout(cUser.cfg, auth)
@@ -59,7 +59,7 @@ def restore_options(cUser: ChangeUser):
     if cUser.cfg in config_list() or cUser.pull:
         auth = get_auth(cUser.user)
         restore_config(cUser.user, auth, -1)
-    if cUser.cfg in load_list(cUser.username):
+    if f"{cUser.defaultUser}.json" in load_list(cUser.username):
         auth = get_extra_auth(cUser.user)
         dump_loadout(cUser.cfg, auth)
         restore_loadout(auth)
