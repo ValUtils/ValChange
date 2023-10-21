@@ -47,7 +47,7 @@ def client_hack():
 
 
 def valorant_launcher(programs: Programs):
-    if programs.launcher:
+    if programs.launcher.path.exists():
         log(Level.FULL,
             f"Launching Valorant with {programs.launcher.path.stem}")
         run(programs.launcher)

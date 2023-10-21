@@ -49,5 +49,5 @@ class Program(DataClassJsonMixin):
 
 @dataclass
 class Programs(DataClassJsonMixin):
-    launcher: Program = field(default=Program(Path("")))
+    launcher: Program = field(default=Program(Path("NonExistant")))
     extra: List[Program] = field(default_factory=list)
