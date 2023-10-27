@@ -43,23 +43,25 @@ def pull_prefs(cUser: ChangeUser):
 
 
 def set_options(cUser: ChangeUser):
+    path = f"{cUser.defaultUser}.json"
     if cUser.pull:
         pull_prefs(cUser)
     elif cUser.cfg in config_list():
         auth = get_auth(cUser.user)
         backup_config(cUser.user, auth)
         import_config(cUser.cfg, auth)
-    if f"{cUser.defaultUser}.json" in load_list(cUser.username):
+    if path in load_list(cUser.username):
         auth = get_extra_auth(cUser.user)
         backup_loadout(auth)
-        import_loadout(cUser.cfg, auth)
+        import_loadout(path, auth)
 
 
 def restore_options(cUser: ChangeUser):
+    path = f"{cUser.defaultUser}.json"
     if cUser.cfg in config_list() or cUser.pull:
         auth = get_auth(cUser.user)
         restore_config(cUser.user, auth, -1)
-    if f"{cUser.defaultUser}.json" in load_list(cUser.username):
+    if path in load_list(cUser.username):
         auth = get_extra_auth(cUser.user)
-        dump_loadout(cUser.cfg, auth)
+        dump_loadout(path, auth)
         restore_loadout(auth)
