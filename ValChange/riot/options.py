@@ -1,16 +1,4 @@
-from ValConfig.config import (
-    backup as backup_config,
-    config_list,
-    import_from_file as import_config,
-    restore as restore_config
-)
-from ValConfig.loadout import (
-    backup as backup_loadout,
-    import_from_file as import_loadout,
-    load_list,
-    restore as restore_loadout,
-    save_to_file as dump_loadout
-)
+from ValConfig import config, loadout
 from ValLib.api import get_preference, set_preference
 from ValVault.terminal import User, get_pass
 
@@ -38,7 +26,7 @@ def pull_prefs(cUser: ChangeUser):
         f"Pulling prefs from {cUser.defaultUser} to {cUser.username}", "riot")
     prefs = get_prefs(cUser.defaultUser)
     auth = get_auth(cUser.user)
-    backup_config(cUser.user, auth)
+    config.backup(cUser.user, auth)
     set_prefs(cUser.user, prefs)
 
 
@@ -46,22 +34,22 @@ def set_options(cUser: ChangeUser):
     path = f"{cUser.defaultUser}.json"
     if cUser.pull:
         pull_prefs(cUser)
-    elif cUser.cfg in config_list():
+    elif cUser.cfg in config.list():
         auth = get_auth(cUser.user)
-        backup_config(cUser.user, auth)
-        import_config(cUser.cfg, auth)
-    if path in load_list(cUser.username):
+        config.backup(cUser.user, auth)
+        config.upload(cUser.cfg, auth)
+    if path in loadout.list(cUser.username):
         auth = get_extra_auth(cUser.user)
-        backup_loadout(auth)
-        import_loadout(path, auth)
+        loadout.backup(auth)
+        loadout.upload(path, auth)
 
 
 def restore_options(cUser: ChangeUser):
     path = f"{cUser.defaultUser}.json"
-    if cUser.cfg in config_list() or cUser.pull:
+    if cUser.cfg in config.list() or cUser.pull:
         auth = get_auth(cUser.user)
-        restore_config(cUser.user, auth, -1)
-    if path in load_list(cUser.username):
+        config.restore(cUser.user, auth, -1)
+    if path in loadout.list(cUser.username):
         auth = get_extra_auth(cUser.user)
-        dump_loadout(path, auth)
-        restore_loadout(auth)
+        loadout.download(path, auth)
+        loadout.restore(auth)
