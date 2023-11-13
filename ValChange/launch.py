@@ -60,7 +60,7 @@ def launch_valorant():
     pre_launch(programs)
     valorant_launcher(programs)
     client_hack()
-    wait_process_open("VALORANT.exe")
+    wait_process_open("VALORANT-Win64-Shipping.exe")
     post_launch(programs)
     wait_process_close("VALORANT.exe")
     exit_programs(programs)
