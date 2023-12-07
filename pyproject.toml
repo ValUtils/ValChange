@@ -5,9 +5,11 @@ readme = "README.md"
 authors = [{ name = "PWall" }]
 license = {text = "GPL-3.0"}
 dependencies = [
-	"ValConfig",
+	"ValLib",
 	"ValStorage",
-	"ValImgs",
+	"ValConfig@git+https://github.com/ValUtils/ValConfig.git",
+	"ValImgs@git+https://github.com/ValUtils/ValImgs.git",
+	"dataclasses-json",
 	"pyyaml",
 	"psutil",
 	"httpx",
