@@ -10,7 +10,7 @@ dependencies = [
 	"ValImgs",
 	"pyyaml",
 	"psutil",
-	"requests",
+	"httpx",
 	"infi.systray"
 ]
 requires-python = ">=3.8"

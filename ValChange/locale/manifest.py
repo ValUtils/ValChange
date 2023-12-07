@@ -2,7 +2,7 @@
 from pathlib import Path
 from urllib.parse import urlparse as URL
 
-import requests
+import httpx
 
 from ..debug import Level, log
 from .structs import Manifest
@@ -23,7 +23,7 @@ def get_region_configs():
     args = {
         "namespace": "keystone.products.valorant.patchlines"
     }
-    r = requests.get(host + end_point, params=args)
+    r = httpx.get(host + end_point, params=args)
 
     patch = "keystone.products.valorant.patchlines.live"
     v = r.json()[patch]["platforms"]["win"]
