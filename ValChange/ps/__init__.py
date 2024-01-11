@@ -1,3 +1,4 @@
+from .instance import exclusive_instance
 from .proc import (
     find_procs_by_name,
     kill_all,

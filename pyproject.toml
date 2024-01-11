@@ -13,7 +13,8 @@ dependencies = [
 	"pyyaml",
 	"psutil",
 	"httpx",
-	"infi.systray"
+	"infi.systray",
+	"pywin32",
 ]
 requires-python = ">=3.8"
 

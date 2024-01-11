@@ -9,6 +9,7 @@ from .debug import Level, log
 from .exit import clean_exit, fault, lock, unlock
 from .launch import launch_valorant, valorant_start
 from .locale import localization
+from .ps import exclusive_instance
 from .structs import ChangeUser, Status
 
 
@@ -51,6 +52,7 @@ def change(cUser: ChangeUser):
 
 
 def main():
+    exclusive_instance()
     fault()
     cUser = get_config()
     change(cUser)
