@@ -6,7 +6,8 @@ from winerror import ERROR_ALREADY_EXISTS
 
 
 def already_running():
-    _ = CreateMutex(None, 1, "org.valutils.valchange")  # type: ignore
+    global mutex
+    mutex = CreateMutex(None, 1, "org.valutils.valchange")  # type: ignore
 
     return GetLastError() == ERROR_ALREADY_EXISTS
 
