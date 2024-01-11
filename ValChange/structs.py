@@ -20,6 +20,12 @@ class Status(IntEnum):
     COOKIES_RESTORED = 6
     CLEANED = 7
 
+    def in_range(self, a: "Status", b: "Status"):
+        """
+        Compares values: [a, b)
+        """
+        return a <= self < b
+
 
 @dataclass
 class Settings(DataClassJsonMixin):

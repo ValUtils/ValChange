@@ -21,9 +21,10 @@ def restore_all():
     cUser = ChangeUser.from_dict(data)
     if cUser.isDefault:
         return
-    get_password(cUser)
-    restore_options(cUser)
-    if Status.COOKIES <= cUser.status < Status.COOKIES_RESTORED:
+    if cUser.status.in_range(Status.CONFIG, Status.CLEANED):
+        get_password(cUser)
+        restore_options(cUser)
+    if cUser.status.in_range(Status.COOKIES, Status.COOKIES_RESTORED):
         restore_cookies()
 
 
