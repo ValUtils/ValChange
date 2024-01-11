@@ -7,7 +7,7 @@ license = {text = "GPL-3.0"}
 dependencies = [
 	"ValLib",
 	"ValStorage",
-	"ValConfig@git+https://github.com/ValUtils/ValConfig.git",
+	"ValManager@git+https://github.com/ValUtils/ValManager.git",
 	"ValImgs@git+https://github.com/ValUtils/ValImgs.git",
 	"dataclasses-json",
 	"pyyaml",

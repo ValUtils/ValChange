@@ -1,4 +1,4 @@
-from ValConfig import config, loadout
+from ValManager import config, loadout
 from ValLib.api import get_preference, set_preference
 from ValVault.terminal import User, get_pass
 
