@@ -1,7 +1,7 @@
 from ValLib import User
 
 from .debug import Level, log
-from .proc import kill_all
+from .ps import kill_all
 from .riot import get_auth, get_cookies, save_cookies
 from .storage import changePath, json_read, json_write
 

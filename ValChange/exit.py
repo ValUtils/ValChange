@@ -3,12 +3,16 @@ from pathlib import Path
 from .config import get_password
 from .debug import Level, log
 from .locale import unlink
-from .proc import kill_all, process_exists
-from .programs import exit_programs, get_programs
+from .ps import (
+    exit_programs,
+    get_programs,
+    kill_all,
+    process_exists,
+    wait_threads
+)
 from .riot import restore_options
 from .storage import changePath, json_read, json_write
 from .structs import ChangeUser
-from .subproc import wait_threads
 from .switch import images as riotImages, restore_cookies
 
 lockFile: Path = changePath / "lock"

@@ -1,9 +1,9 @@
 from typing import List
 
-from .debug import Level, log
+from ..debug import Level, log
+from ..storage import changePath, get_settings
+from ..structs import Programs
 from .proc import kill_all, wait_process_open
-from .storage import changePath, get_settings
-from .structs import Programs
 from .subproc import runs
 
 

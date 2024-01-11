@@ -3,11 +3,20 @@ from time import sleep
 
 from .debug import Level, log
 from .locale import localization
-from .proc import process_exists, wait_process_close, wait_process_open
-from .programs import exit_programs, get_programs, post_launch, pre_launch
+from .ps import (
+    exit_programs,
+    get_programs,
+    post_launch,
+    pre_launch,
+    process_exists,
+    run,
+    run_fn,
+    subrun,
+    wait_process_close,
+    wait_process_open
+)
 from .riot import get_riot_installs, restore_options, set_options
 from .structs import ChangeUser, Programs
-from .subproc import run, run_fn, subrun
 from .switch import restore_user, switch_user
 
 

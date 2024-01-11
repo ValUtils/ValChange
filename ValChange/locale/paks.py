@@ -2,9 +2,9 @@ from pathlib import Path
 
 from .folders import *
 from ..debug import Level, log
+from ..ps import subrun, subrun_out
 from ..riot import get_product_info
 from ..storage import changePath, get_settings, json_write
-from ..subproc import subrun, subrun_out
 from .structs import LocaleInfo, Manifest
 
 locale_path = changePath / "locale.json"

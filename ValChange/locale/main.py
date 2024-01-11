@@ -1,6 +1,6 @@
 from ..debug import Level, log
+from ..ps import run_fn
 from ..structs import ChangeUser
-from ..subproc import run_fn
 from .links import link
 from .paks import download, download_locale, redownload, remove_unused
 from .riot import get_manifest, set_locale

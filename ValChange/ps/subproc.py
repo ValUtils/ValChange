@@ -3,8 +3,8 @@ from pathlib import Path
 from threading import Thread
 from typing import Callable, List
 
-from .debug import Level, log
-from .structs import Program
+from ..debug import Level, log
+from ..structs import Program
 
 pool: List[Thread] = []
 
