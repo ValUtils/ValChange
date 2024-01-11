@@ -1,9 +1,8 @@
-from ValLib import User
-
 from .debug import Level, log
 from .ps import kill_all
 from .riot import get_auth, get_cookies, save_cookies
 from .storage import changePath, json_read, json_write
+from .structs import ChangeUser, Status
 
 images = [
     "LeagueClient.exe",
@@ -30,11 +29,13 @@ def restore_cookies():
     save_cookies(json_read(changePath / "cookies.json"))
 
 
-def switch_user(user: User):
-    log(Level.DEBUG, f"Switching to {user.username}")
+def switch_user(cUser: ChangeUser):
+    log(Level.DEBUG, f"Switching to {cUser.username}")
     store_cookies()
 
-    cookies = get_auth(user).cookies
+    cUser.status = Status.COOKIES
+
+    cookies = get_auth(cUser.user).cookies
     kill_all(images)
     save_cookies(cookies)
 

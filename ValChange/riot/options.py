@@ -3,7 +3,7 @@ from ValLib.api import get_preference, set_preference
 from ValVault.terminal import User, get_pass
 
 from ..debug import Level, log
-from ..structs import ChangeUser
+from ..structs import ChangeUser, Status
 from .auth import get_auth, get_extra_auth
 
 
@@ -34,22 +34,26 @@ def set_options(cUser: ChangeUser):
     path = f"{cUser.defaultUser}.json"
     if cUser.pull:
         pull_prefs(cUser)
+        cUser.restoreConfig = True
     elif cUser.cfg in config.list():
         auth = get_auth(cUser.user)
         config.backup(cUser.user, auth)
         config.upload(cUser.cfg, auth)
+        cUser.restoreConfig = True
     if path in loadout.list(cUser.username):
         auth = get_extra_auth(cUser.user)
         loadout.backup(auth)
         loadout.upload(path, auth)
+        cUser.restoreLoadout = True
+    cUser.status = Status.CONFIG
 
 
 def restore_options(cUser: ChangeUser):
     path = f"{cUser.defaultUser}.json"
-    if cUser.cfg in config.list() or cUser.pull:
+    if cUser.restoreConfig:
         auth = get_auth(cUser.user)
         config.restore(cUser.user, auth, -1)
-    if path in loadout.list(cUser.username):
+    if cUser.restoreLoadout:
         auth = get_extra_auth(cUser.user)
         loadout.download(path, auth)
         loadout.restore(auth)

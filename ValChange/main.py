@@ -9,7 +9,7 @@ from .debug import Level, log
 from .exit import clean_exit, fault, lock, unlock
 from .launch import launch_valorant, valorant_start
 from .locale import localization
-from .structs import ChangeUser
+from .structs import ChangeUser, Status
 
 
 def create_tray(cUser: ChangeUser):
@@ -37,7 +37,7 @@ def launch(cUser: ChangeUser):
 
 
 def change(cUser: ChangeUser):
-    lock(cUser)
+    cUser.status = Status.LOCK
 
     systray = create_tray(cUser)
     if cUser.systray:

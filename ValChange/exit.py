@@ -12,7 +12,7 @@ from .ps import (
 )
 from .riot import restore_options
 from .storage import changePath, json_read, json_write
-from .structs import ChangeUser
+from .structs import ChangeUser, Status
 from .switch import images as riotImages, restore_cookies
 
 lockFile: Path = changePath / "lock"
@@ -25,14 +25,17 @@ def restore_all():
         return
     get_password(cUser)
     restore_options(cUser)
-    restore_cookies()
+    if Status.COOKIES <= cUser.status < Status.COOKIES_RESTORED:
+        restore_cookies()
 
 
 def lock(cUser: ChangeUser):
     log(Level.EXTRA, f"Locking user {cUser.username}")
+    password = cUser.user.password
     cUser.user.password = ""
     data = cUser.to_dict()
     json_write(data, lockFile)
+    cUser.user.password = password
 
 
 def unlock():

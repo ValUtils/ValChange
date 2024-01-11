@@ -16,24 +16,28 @@ from .ps import (
     wait_process_open
 )
 from .riot import get_riot_installs, restore_options, set_options
-from .structs import ChangeUser, Programs
+from .structs import ChangeUser, Programs, Status
 from .switch import restore_user, switch_user
 
 
 def valorant_start(cUser: ChangeUser):
     set_options(cUser)
 
-    switch_user(cUser.user)
+    switch_user(cUser)
 
     localization(cUser)
 
     run_fn(launch_valorant)
     wait_process_open("VALORANT.exe")
+    cUser.status = Status.LAUNCHED
     wait_process_close("VALORANT.exe")
+    cUser.status = Status.EXITED
 
     restore_user()
+    cUser.status = Status.COOKIES_RESTORED
 
     restore_options(cUser)
+    cUser.status = Status.CLEANED
 
 
 def riot_launcher():
