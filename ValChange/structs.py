@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from enum import IntEnum, auto
+from enum import IntEnum
 from pathlib import Path
 from typing import List
 
@@ -7,7 +7,7 @@ from dataclasses_json import DataClassJsonMixin, config
 
 from ValLib import User
 
-from .exit import lock
+from .storage import json_write, lockFile
 
 
 class Status(IntEnum):
@@ -60,7 +60,14 @@ class ChangeUser(DataClassJsonMixin):
     @status.setter
     def status(self, status: Status):
         self._status = status
-        lock(self)
+        self._save()
+
+    def _save(self):
+        password = self.user.password
+        self.user.password = ""
+        data = self.to_dict()
+        json_write(data, lockFile)
+        self.user.password = password
 
 
 @dataclass

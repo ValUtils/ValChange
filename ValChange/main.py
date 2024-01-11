@@ -6,7 +6,7 @@ from ValImgs import get_imgs
 
 from .config import get_config, get_password
 from .debug import Level, log
-from .exit import clean_exit, fault, lock, unlock
+from .exit import clean_exit, fault, unlock
 from .launch import launch_valorant, valorant_start
 from .locale import localization
 from .ps import exclusive_instance

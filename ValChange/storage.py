@@ -18,6 +18,8 @@ def set_path():
     utilsPath = utils_path()
     changePath = utilsPath / "change"
     create_path(changePath)
+    global lockFile
+    lockFile = changePath / "lock"
 
 
 set_path()
