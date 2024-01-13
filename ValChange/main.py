@@ -31,7 +31,7 @@ def destroy_tray(systray: SysTrayIcon):
 def launch(cUser: ChangeUser):
     if cUser.isDefault:
         localization(cUser)
-        launch_valorant()
+        launch_valorant(cUser)
         return
     get_password(cUser)
     valorant_start(cUser)

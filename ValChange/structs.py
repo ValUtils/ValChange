@@ -41,6 +41,7 @@ class ChangeUser(DataClassJsonMixin):
     user: User
     settings: Settings
     systray: bool
+    vanilla: bool
     _status: Status = field(default=Status.BOOT)
     defaultUser: str = field(init=False)
     cfg: str = field(init=False)

@@ -27,7 +27,7 @@ def valorant_start(cUser: ChangeUser):
 
     localization(cUser)
 
-    run_fn(launch_valorant)
+    launch_valorant(cUser)
     wait_process_open("VALORANT.exe")
     cUser.status = Status.LAUNCHED
     wait_process_close("VALORANT.exe")
@@ -68,7 +68,7 @@ def valorant_launcher(programs: Programs):
     run_fn(riot_launcher)
 
 
-def launch_valorant():
+def launch_all():
     programs = get_programs()
     pre_launch(programs)
     valorant_launcher(programs)
@@ -77,3 +77,10 @@ def launch_valorant():
     post_launch(programs)
     wait_process_close("VALORANT.exe")
     exit_programs(programs)
+
+
+def launch_valorant(cUser: ChangeUser):
+    if cUser.vanilla:
+        riot_launcher()
+        return
+    run_fn(launch_all)

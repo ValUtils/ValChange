@@ -12,20 +12,22 @@ def get_args(settings: Settings):
     parser.add_argument("user", help="user to start valorant", nargs="?")
     parser.add_argument("--no-systray", help="don't show a systray",
                         required=False, default=True, action='store_false')
+    parser.add_argument("--vanilla", help="launch VALORANT only",
+                        required=False, default=False, action='store_true')
     args = parser.parse_args()
     if not args.user:
-        return (settings.defaultUser, args.no_systray)
+        return (settings.defaultUser, args.no_systray, args.vanilla)
     init_vault()
-    return (get_name(args.user), args.no_systray)
+    return (get_name(args.user), args.no_systray, args.vanilla)
 
 
 def get_config(name=""):
     log(Level.DEBUG,
         f"Getting config for {(name if name else 'default user')}")
     settings = get_settings(Settings, changePath / "config.json")
-    (username, tray) = get_args(settings)
+    (username, tray, vanilla) = get_args(settings)
     user = User(name or username, "")
-    cUser = ChangeUser(user, settings, tray)
+    cUser = ChangeUser(user, settings, tray, vanilla)
     return cUser
 
 
