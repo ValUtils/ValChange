@@ -9,7 +9,7 @@ from .debug import Level, log
 from .exit import clean_exit, fault, unlock
 from .launch import launch_valorant, valorant_start
 from .locale import localization
-from .ps import exclusive_instance
+from .ps import exclusive_instance, wait_threads
 from .structs import ChangeUser, Status
 
 
@@ -32,6 +32,7 @@ def launch(cUser: ChangeUser):
     if cUser.isDefault:
         localization(cUser)
         launch_valorant(cUser)
+        wait_threads()
         return
     get_password(cUser)
     valorant_start(cUser)

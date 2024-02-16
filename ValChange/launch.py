@@ -13,7 +13,7 @@ from .ps import (
     run_fn,
     subrun,
     wait_process_close,
-    wait_process_open
+    wait_process_open,
 )
 from .riot import get_riot_installs, restore_options, set_options
 from .structs import ChangeUser, Programs, Status
@@ -81,6 +81,6 @@ def launch_all():
 
 def launch_valorant(cUser: ChangeUser):
     if cUser.vanilla:
-        riot_launcher()
+        run_fn(riot_launcher())
         return
     run_fn(launch_all)
